@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation test</title>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+        * {
+            font-family: "Work Sans", serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section {
+            min-height: 100vh;
+            display: grid;
+            place-content: center;
+        }
+
+        a {
+            padding: 16px;
+            background-color: #3bbfa1;
+            text-decoration: none;
+            border-radius: 6px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <a href="" target="_blank" rel="noopener" disabled>Open in location in map</a>
+    </section>
+
+    <script>
+        const link = document.querySelector("a")
+        const options = {
+            enableHighAccuracy: true,
+            maximumAge: 3000,
+            timeout: 27000,
+        };
+
+        const getGeolocation = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(
+                    (pos) => {
+                        link.href = `https://www.google.com/maps/search/?api=1&query=${pos.coords.latitude},${pos.coords.longitude}`;
+                    },
+                    error,
+                    options
+                );
+            }
+        };
+
+
+
+        function error(error) {
+            alert(error.message);
+            link.href = "#"
+            link.setAttribute("target", '')
+        }
+
+        getGeolocation();
+    </script>
+</body>
+
+</html>
