@@ -7,8 +7,8 @@
       rel="noopener"
       as="a"
     />
-    <p>{{ location.lat }}</p>
-    <p>{{ location.long }}</p>
+    <p>Latitude: {{ location.lat }}</p>
+    <p>Longitude: {{ location.long }}</p>
   </main>
 </template>
 
